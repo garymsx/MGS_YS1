@@ -55,7 +55,7 @@
 9A [
 9  L16 @15 V11 H10,1,2,2 O5 \0
 A  L16 @15 V7  H10,1,2,2 O6 \1
-9A $[a+8.g+r8a+8.g+r8a+a+g+ra+8.g+r8a+8.g+r8a+a+g+ra+8.g+r8a+1&a+2r8]2
+9A [a+8.g+r8a+8.g+r8a+a+g+ra+8.g+r8a+8.g+r8a+a+g+ra+8.g+r8a+1&a+2r8]2
 9A [a+8.g+r8a+8.g+r8a+a+g+r]2
 9A a+8.g+r8a+1&a+8r2
 9  @16 V14 HF O5 \0
