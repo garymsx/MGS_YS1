@@ -1,0 +1,159 @@
+;[gain=1.0 name=YS1G_08 duration=300s fade=5s]
+#opll_mode 0
+#tempo 108
+#title { "Palace of Destrution"}
+
+;マシンID
+; 1:SONY製マシン
+; 2:Panasonic製マシン
+; 3:SANYO製マシン
+;#machine_id 0
+
+;LFOのモード。1を指定するとLFOの速度が若干速めになります。初期値は0です。
+;#lfo_mode 0
+
+;トラックバッファを割り当てます。
+;#alloc 0=1000
+
+;#macro_offset <定義文字 = no>
+#macro_offset a = 100
+#macro_offset b = 120
+#macro_offset c = 140
+#macro_offset d = 160
+#macro_offset e = 180
+#macro_offset f = 200
+#macro_offset r = 220
+
+@e0  = {1, 0, f }
+@e1  = {1, 0, fdc }
+@e2  = {1, 0, fdcba }
+
+@e10 = {2, 2, fdcba:15,90=10 }
+@e11 = {2,12, fdcba:15,90=10 }
+
+@e20 = {1, 0, fdcba }
+
+@e30 = {1, 0, f:15,0 }
+
+*0 = {Y6,255 Y7,255}
+*1 = {Y14,32 Y39,5 Y23,80 Y40,1 Y24,192}
+
+;* ブラス
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v15 = {23, 6,15, 3, 2, 0, 0, 1, 0, 0, 0, 0, 0
+             ,10, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0}
+
+9   @15 V13 L16 O4 H10,1,1,2
+A   @15 V10 L16 O5 H10,1,1,2 \1
+B   @15 V11 L16 O4 H10,1,1,2 \-1
+9AB c4c+4g4>c4 c+4g4>c4c+4<<
+9AB c4c+4g4>c4 c+4g4>c4c+4& c+1
+B   r8
+9AB [
+9   @15 V13 L16 O4 H10,1,1,2
+A   @15 V10 L16 O5 H10,1,1,2 \1
+B   @15 V11 L16 O4 H10,1,1,2 \-1
+9AB a+8.g+8.g8.f8.gd+fg     d+8.c+8.f8.c+8.c8<a+8>
+9AB a+8.g+8.g8.f8.g8g+8     a+8.>c8.c+8.d+8.f8g8
+9AB [a+8.g+2&g+g4]3
+9AB g+8.f8.g+8.a+8.>c8d+8   f2&fgg+a+>c<a+g+g
+9AB f8.g8.d+8f2<            f2c+d+fgg+a+>cc+
+9AB c12<g+12f12c12f12g+12>c12<g12e12c12e12g12<
+9AB a+8.g+8.g8.f8.gd+fg     d+8.c+8.f8.c+8.c8<a+8>
+9AB a+8.g+8.g8.f8.g8g+8     a+8.>c8.<a+8.g+8.g8d+8
+9AB g8.f2.&f>               f1>
+9AB f2.c4                   d+12c12<a+12>c12<a+12g+12a+12g+12g12g+12g12d+12
+9AB f8.>f2.&f&              f1<
+9AB f2g4g+4                 a+2>c4c+4
+9AB c1>                     c1
+9AB ]0
+
+D @13 V13 L16 O3
+E @10 V13 L16 O3 \5 @e20 H0,1,0,5
+DE [cccccccc           cccccccc]4 >
+DE  c<cccc>c<cc>       c<cccc>c<cc
+DE [
+;---------------------------------------------------------------------------
+DE [c+c+c+c+c+c+c+c+   c+c+c+c+c+c+c+c+]2
+DE [d+d+d+d+d+d+d+d+   d+d+d+d+d+d+d+d+]2
+DE  ffffffff           ffffffff
+DE  d+d+d+d+d+d+d+d+   d+d+d+d+d+d+d+d+
+DE  c+c+c+c+c+c+c+c+   c+c+c+c+c+c+c+c+
+DE  cccccccc           ccccccde
+DE  ffffffff           ffffffff
+DE  d+d+d+d+d+d+d+d+   d+d+d+d+d+d+d+d+
+DE  c+c+c+c+c+c+c+c+   c+c+c+c+c+c+c+c+
+DE  cccccccc           cccc>c12<c12c12
+;---------------------------------------------------------------------------
+DE  c+c+c+c+c+c+c+c+   c+c+c+c+c+c+c+c+
+DE  c+c+c+c+c+c+c+c+   c+c+c+c+c+c+c+c+
+DE  d+d+d+d+d+d+d+d+   d+d+d+d+d+d+d+d+
+DE  d+d+d+d+d+d+d+d+   d+d+d+d+d+d+d+d+
+DE  ffffffff           ffffffff
+DE  ffffffff           ffffffff
+;---------------------------------------------------------------------------
+DE  c+4>c+<c+8c+4&c+>c+<c+c+8
+DE  d+4>d+<d+8d+4&d+>d+<d+d+>d+<
+DE  f4>f<f8f4&f>f<ff8
+DE  f4>f<f8f4&f>f<ff8
+DE  c+4>c+<c+8c+4&c+>c+<c+c+8<
+DE  a+4>a+<a+8a+4&a+>a+<a+a+>a+
+DE [cccccccc           cccccccc]2
+DE ]0
+
+
+1 @e1 V13 L16 O3
+1 [g>cc+g< g>cc+g< g>cc+g< g>cc+g<]5
+1 [
+1 @e1 V13 L16 O4
+1 [f8.f8.f8.f8.f8f8]
+1 [g8.g8.g8.g8.g8g8]
+1 [ffffrfg8g+g8f8d+8.]3
+1  ffffrgg+8eeeerfg8
+1 [ffffrfg8g+g8f8d+8.]3
+1  ffffrgg+8eeeerfg8
+1 [f8.f8.f8.f8.f8f8]
+1 [g8.g8.g8.g8.g8g8]
+1 g+1& g+1
+1 g+1  g1
+1 g+1& g+1
+1 g+1  f1
+1 f1   e1
+1 ]0
+
+2 @e1 V11 L16 O3 \1 r16
+2 [g>cc+g< g>cc+g< g>cc+g< g>cc+g<]5
+2 [
+2 @e1 V11 L16 O4
+2 [f8.f8.f8.f8.f8f8]
+2 [g8.g8.g8.g8.g8 | g8] g16
+2 V+2
+2 [g+g+g+g+rg+a+8>c<a+8g+8g+8.]3
+2  g+g+g+g+ra+>c8<ggggrg+a+8
+2 [g+g+g+g+rg+a+8>c<a+8g+8g+8.]3
+2  g+g+g+g+ra+>c8<ggggrg+a+8
+2 V-2 r16
+2 [f8.f8.f8.f8.f8f8]
+2 [g8.g8.g8.g8.g8 | g8] g16 >
+2 V+2
+2 c1&  c1
+2 c1<  a+1>
+2 c1&  c1
+2 c1<  a+1
+2 g+1  g1&g16
+2 ]0
+
+3 @e2 V13 L16 O2
+3 [[c32c32ccc]4]4
+3 V12 L16 O3
+3 [@e10 cc @e11 c @e10 c]3 c @e11 ccc
+3 [
+3 [[@e10 cc @e11 c @e10 c]4]7
+3 [@e10 cc @e11 c @e10 c]3 c @e11 ccc
+3 [[@e10 cc @e11 c @e10 c]4]3
+3 [@e10 cc @e11 c @e10 c]2 @e11 c12c12c12 @10 cc @e11 cc
+3 [[@e10 cc @e11 c @e10 c]4]5
+3 [@e10 cc @e11 c @e10 c]3 @e11 cccc
+3 [@e10 c4c4c4 @e11 | c4]6 cccc
+3 [@e10 cc @e11 c @e10 c]7 @e10 cc @e11 cc
+3 ]0

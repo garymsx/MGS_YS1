@@ -1,0 +1,137 @@
+;[gain=1.0 name=YS1G_12 duration=300s fade=5s]
+#opll_mode 0
+#tempo 115
+#title { "Final Battle"}
+
+;マシンID
+; 1:SONY製マシン
+; 2:Panasonic製マシン
+; 3:SANYO製マシン
+;#machine_id 0
+
+;LFOのモード。1を指定するとLFOの速度が若干速めになります。初期値は0です。
+;#lfo_mode 0
+
+;トラックバッファを割り当てます。
+;#alloc 0=1000
+
+;#macro_offset <定義文字 = no>
+#macro_offset a = 100
+#macro_offset b = 120
+#macro_offset c = 140
+#macro_offset d = 160
+#macro_offset e = 180
+#macro_offset f = 200
+#macro_offset r = 220
+
+@e0  = {1, 0, f }
+@e1  = {1, 0, fdc }
+@e2  = {1, 0, fec0 }
+
+@e10 = {2, 2, fdcba:15,90=10 }
+@e11 = {2,12, fdcba:15,90=10 }
+
+@e20 = {1, 0, fdcba }
+
+@e30 = {1, 0, f:15,0 }
+
+*0 = {Y6,255 Y7,255}
+*1 = {Y14,32 Y39,5 Y23,80 Y40,1 Y24,192}
+
+;* D.ギター6
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v15 = { 2, 2,15, 1, 1, 0, 0, 2, 0, 0, 0, 0, 1
+             ,15, 0, 0, 0, 0, 4, 0, 1, 0, 0, 1}
+
+9A [
+9  L16 @15 V13 O3
+A  L16 @15 V10 O4 \1
+9A [a+>cf<]4 a+>cc+d+<
+9A [a+>cf<]4 a+>cc+d+<
+9A f+f+>f+8<f+>f+8<f+g+g+>g+8<g+>g+8.
+9A ff+a+>c+fc+<a+f+ff+a+>c+ff+g+a+<<
+9A f+f+>f+8<f+>f+8<f+g+g+>g+8<g+>g+8.
+9A [fa+>d+<]4 fa+>d+<a+
+9A [fa+>d<]2
+9  @11 V13 O4
+A  @11 V10  O4 \1
+9A fa+>a+>dfa+>dfa+>d
+; -- 追加パート
+9  L16 @15 V14 O4
+A  L16 @15 V11 O5 \1 
+9A f8.f+&f+2g+8a+8 b2>c+4d+4<
+9A d+8.f&f2f+8g+8  a+2b4>c+4<
+9A c+8.d+&d+2f8f+8 g+4f+4f4d+4
+9A d+2.d8c8 d2rfffffff
+
+9A ]0
+
+BC [
+B  L16 @15 V13 O4 \-1
+C  L16 @15 V10 O5 \1
+BC [d+fa+]4 d+ff+g+
+BC [d+fa+]4 d+ff+g+<<
+BC bb>b8<b>b8.c+c+>c+8<c+>c+8.<
+BC a+>d+ff+g+f+fd+<a+>d+ff+g+a+b>c+<<<
+BC bb>b8<b>b8.c+c+>c+8<c+>c+8.<<
+BC [a+a+>a+8<a+>a+<a+a+]3 >>>
+BC d<fa+>d<fa+>d<f
+; -- 追加パート
+B  L16 @15 V12 O4 \1 r16
+B  f8.f+&f+2g+8a+8 b2>c+4d+4<
+B  d+8.f&f2f+8g+8  a+2b4>c+4<
+B  c+8.d+&d+2f8f+8 g+4f+4f4d+4
+B  d+2.d8c8 d4..r V+2 a+a+a+a+a+a+a+
+C  [r1]8
+BC ]0
+
+DE [
+D  L16 @13 V13 O3
+E  L16 @14 V13 O3 @e20 \5 H0,1,1,5
+DE [d+d+d+d+]3 c+c+c+c+
+DE [d+d+d+d+]3 c+c+c+c+ <
+DE [bbbb]2 > [c+c+c+c+]
+DE [d+d+d+d+]3 d+d+ c+c+ <
+DE [bbbb] > [c+c+c+c+] <
+DE [a+a+a+a+]7 V+ a+a+a+a+ >
+; -- 追加パート
+DE [d+d+d+d+]4 <
+DE [bbbb]4 >
+DE [c+c+c+c+]4 <
+DE [f+f+f+f+]4
+DE [bbbb]4
+DE [g+g+g+g+]4
+DE [a+a+a+a+]8
+DE ]0
+
+1 [
+1 L16 @e2 V12 O2 P0
+1 [cr>cr<]16
+1 [cr>cr<]11
+; -- 追加パート
+1 @e1 V13 P60 > f+f+f+f+
+1 L16 @e2 V12 O2 P0
+1 [cr>cr< cr>cr< | cr>cr< cr>cr<]8 c>ccc< c>ccc<
+1 ]0
+
+2 [
+2 L16 @0 V10 O4
+2 [d+8.f8.a+4.g+g+f+f]2
+2 d+2f2 f+2..f8
+2 d+2f2 f2..d+8
+2 d1
+; -- 追加パート
+2 @e1 L16 V12 O5
+2 [d+f+a+f+>d+<a+f+a+]4
+2 [c+fg+f>c+<g+fg+]4 <
+2 [b>d+f+d+bf+d+f+<]4
+2 [a+>fa+<]10 > df
+2 ]0
+
+3 [
+3 L16 V13 O3
+3 [@e10 cc @e11 c @e10 c c32c32c @e11 c @e10 c cc @e11 c @e10 c @e11 c @e10 c @e11 c @e10 c]4
+3 [@e10 cc @e11 c @e10 c | c32c32c @e11 c @e10 c]6 @e11 cccc
+; -- 追加パート
+3 [@e10 cc @e11 c @e10 c cc @e11 c @e10 c | cc @e11 c @e10 c cc @e11 c @e10 c]8 @e11 cccc cccc
+3 ]0

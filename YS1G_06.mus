@@ -1,0 +1,127 @@
+;[gain=1.0 name=YS1G_06 duration=300s fade=5s]
+#opll_mode 0
+#tempo 148
+#title { "Palace"}
+
+;マシンID
+; 1:SONY製マシン
+; 2:Panasonic製マシン
+; 3:SANYO製マシン
+;#machine_id 0
+
+;LFOのモード。1を指定するとLFOの速度が若干速めになります。初期値は0です。
+;#lfo_mode 0
+
+;トラックバッファを割り当てます。
+;#alloc 0=1000
+
+;#macro_offset <定義文字 = no>
+#macro_offset a = 100
+#macro_offset b = 120
+#macro_offset c = 140
+#macro_offset d = 160
+#macro_offset e = 180
+#macro_offset f = 200
+#macro_offset r = 220
+
+@e0  = {1, 0, f }
+@e1  = {1, 0, fd:10,d0=180 }
+
+@e20 = {1, 0, fdcba }
+
+@e30 = {1, 0, f:15,0 }
+
+*0 = {Y6,255 Y7,255}
+*1 = {Y14,32 Y39,5 Y23,80 Y40,1 Y24,192}
+
+;* シンセピアノ
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v15 = {27, 5,10, 1, 3, 0, 1, 1, 0, 0, 0, 0, 0
+             ,15, 3, 4, 1, 0, 1, 0, 0, 0, 1, 1}
+             
+9  @15 V15 L8 O5
+A  @15 V11 L8 O6 \1
+9A [g2. f2. d+2. f2.]3
+9A [gdcdc<g>] [gd<b>d<bg>]
+9A [
+9A [
+9    @15 V15 L8 O5
+A    @15 V11 L8 O6 \1
+9A   [g2. f2. d+2. f2.]3
+9A   [gdcdc<g>] [gd<b>d<bg>]
+9A ]2
+9A >[cccrcc d+ccrcc gccrcc> c<ccrcc]4
+9A d+2. c4d4d+4 f2.d+4d4<a+4>
+9A c2.& c2.     c16g2.& g2&g8.
+9A ]0
+
+B  @15 V15 L8 O5 \1
+C  @15 V11 L8 O6 \0
+BC [c2. c2. c2. c2>c4<]3
+BC V-2 r [gdcdc<g>] [gd<b>d<b | g>] > V+2
+BC [
+BC [
+B    @15 V15 L8 O5 \1
+C    @15 V11 L8 O6 \0
+BC   [c2. c2. c2. c2>c4<]3
+BC   V-2 r [gdcdc<g>] [gd<b>d<b | g>] V+2
+BC ]2
+BC >[gggrgg]8
+BC [gggrgg> c<ggrgg> d+<ggrgg> g<ggrgg] >
+BC d+2.c4d4d+4f2.d+4d4<a+4>
+BC c2.& c2. r32d+16>c2&c8&c32 &c2.
+BC ]0
+
+D  @13 V13 L8 O3
+E  @2  V13 L8 O3 \1
+DE [ccrccc]4 <
+DE [a+a+ra+a+a+]4
+DE [g+g+rg+g+g+]4
+DE [ggrggg]4 >
+DE [
+DE [
+D    @13 V13 L8 O3
+E    @2  V13 L8 O3 \1
+DE   [ccrccc]4 <
+DE   [a+a+ra+a+a+]4
+DE   [g+g+rg+g+g+]4
+DE   [ggrggg]4 >
+DE ]2
+DE [
+DE   [ccrccc] < [a+a+ra+a+a+]
+DE   [g+g+rg+g+g+] [a+a+ra+a+a+] | >
+DE ]
+DE [g+g+rg+g+g+] [a+a+ra+a+a+] >
+DE [ccrccc]4
+DE ]0
+
+1   @e1 V12 L8 O4
+2   @e1 V10 L8 O4 \1
+3   @e1 V8  L8 O4 \-1
+2   r16
+3   r8
+123 [r2.]15
+123 g2.
+123 [
+1   @e1 V12 L8 O5
+2   @e1 V10 L8 O5 \1
+3   @e1 V8  L8 O5 \-1
+123 g2.& g2.   c2.  d+2f4
+123 g2.& g2.   c2.  d+2>c4<
+123 g2.& g2.   c2.  d+2f4
+123 d2.& d2.   g2.  &g2<g4>
+123 g2.& g2.   c2.  d+4.dd+f
+123 g2.& g2.   c2.  d+4.cd+>c<
+123 g2.& g2.   c2.  d+4.dd+f
+123 d2.  c2d4< b2.& b4.>gf
+1   d+
+2   d+16
+3   d+r16  V10
+123 [c<g>d+c<gd+>]16 <
+123 [g+d+>c<g+d+c]
+123 [a+f>d<a+fd] >
+123 [c<g>d+c< | gd+>]4
+1   g4
+2   r16 g4
+3   g8.
+123 ]0

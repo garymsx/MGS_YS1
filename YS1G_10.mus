@@ -1,0 +1,177 @@
+;[gain=1.0 name=YS1G_10 duration=300s fade=5s]
+#opll_mode 0
+#tempo 120
+#title { "Tower of The Shadow of Death"}
+
+;マシンID
+; 1:SONY製マシン
+; 2:Panasonic製マシン
+; 3:SANYO製マシン
+;#machine_id 0
+
+;LFOのモード。1を指定するとLFOの速度が若干速めになります。初期値は0です。
+;#lfo_mode 0
+
+;トラックバッファを割り当てます。
+;#alloc 0=1000
+
+;#macro_offset <定義文字 = no>
+#macro_offset a = 100
+#macro_offset b = 120
+#macro_offset c = 140
+#macro_offset d = 160
+#macro_offset e = 180
+#macro_offset f = 200
+#macro_offset r = 220
+
+@e0  = {1, 0, f }
+@e1  = {1, 0, fed:60,d0=90 }
+@e10 = {2, 0, fdb975310 }
+@e11 = {2,10, fdcba9876543210 }
+@e12 = {2,20, fdcb0=20 }
+
+@e20 = {1, 0, fedcba9876543210 }
+@e21 = {1, 0, fe }
+@e22 = {1, 0, fedcba98 }
+
+@e30 = {1, 0, f:15,0 }
+
+*0 = {Y6,255 Y7,255}
+*1 = {Y14,32 Y39,5 Y23,80 Y40,1 Y24,192}
+
+;* チョッパーベース3
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+;@v15 = { 5, 4,15, 6,15, 0, 0, 1, 0, 0, 0, 0, 1
+;             ,15, 7,10, 4, 0, 7, 0, 0, 0, 0, 1}
+
+;* チョッパーベース4
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+;@v15 = { 5, 0,15, 4, 8, 0, 0, 1, 0, 0, 0, 0, 1
+;             ,15, 8, 5, 8, 0, 7, 0, 0, 0, 0, 1}
+
+;* チョッパーベース5
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v15 = { 5, 0,15, 8, 8, 0, 1, 7, 0, 0, 0, 0, 0
+             ,15, 7, 8, 0, 0, 1, 0, 0, 0, 0, 1}
+
+; ブラス
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v16 = {20, 5,15, 1, 1, 0, 2, 2, 0, 1, 0, 0, 0
+             ,15, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0}
+
+; ぶおーん
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v17 = {12, 0,15, 2, 5, 0, 2, 2, 1, 1, 0, 0, 0
+             ,15, 1, 5,10, 0, 6, 1, 1, 0, 0, 0}
+
+9AB [
+9   L16 @13 V13 O2    HF
+A   L16 @15 V13 O2 \1 HF
+B   L16 @15 V13 O3 \2 HF
+9AB [d>d<d>c<dbd>cr2< d>d<d>c<dbd>cr4c&<bag]5
+9AB d8dd8dd>d<d>c<b>c< f8ff8ff>f<f>c<f>f<         a+8a+a+8a+ V+1 <a+>a+c>c<<a+>a+ V-1 d8dd8dd>d<d+>d+<f>f<
+9AB g8gg8gg>g<g>f<g>g< a+8a+a+8a+a+>a+<g>g<a+>a+  c8cc8cc>c<<g>gc>c
+9   @16 V12 O2
+A   @16 V10 O3
+B   @16 V10 O2 r16
+9A  d+1&d+2
+B   d+1&d+4..
+9   @13 V13 O2
+A   @15 V13 O2 \1
+B   @15 V13 O3 \2 
+9AB gaa+>c<
+9AB [g8gg8g>c8c8c8<a+>a+c>c<<a+>a+<]8
+9AB gfdfdcdfgfga+
+9   @17 V14 O1
+A   @17 V12 O2
+B   @17 V12 O1 r16 H10,2,1,3
+9AB c2.c+2.d2.d+2.e1&e1
+9A r4
+B  r8.
+9AB ]0
+
+CD [
+C  L16 @3 V13 O6 \0 H10,1,2,3
+D  L16 @3 V11 O6 \1 H10,1,2,3
+D  r16
+CD r1 r1
+CD a1&    a4<a2>c4         d_e16&e4.d16&d2& d2.r4
+CD r4a2.& a4>c4<b8a+a8.d8& d8a2..&          a2
+C  r2
+D  r4..
+C  L16 @0 @e21 V13 O5 \0 H20,1,2,5
+D  L16 @5 @e21 V10 O5 \1 H20,1,2,5
+CD a8aa8.>a8d8a8g4.f8e8c8d4.c8<a+8>c8<a4.a8a+8>c8d8dd8.>d8<g8>d8c4.
+CD <g8a8a+8>c4.<g8a8a+8>c2. &c2.r4
+CD [ [r4.]3 ]8 r2.
+CD r2.r2.r2.r2.r1&r2 r2 r4
+CD ]0
+
+F [
+F *1 @14 @e30 V15 L16 O4 Q1 SO H0,30,0,-20
+F [r2.cr8.| r1]5
+F r2 rfffrccc
+F [r1]6
+F r2. dddd
+F [crr4 crr4 | crr4]4 
+F cgg+rd+d+
+F [crr4 crr4 | crr4]4 
+F d+32d+32d+d+d+c+c+ Q8<aaa>Q1 d+d+d+ccc< Q8aaaQ1
+F r2.r2.r2.r2.r1r2r2.
+F ]0
+
+G [
+G @14 @e20 V11 L16 O1 Q1 SO
+G [r2.cr8.| r1]5
+G r2 rcccrccc
+G [r1]6
+G r2. cccc
+G [crr4 crr4 | crr4]4 
+G cccrcc
+G [crr4 crr4 | crr4]4 
+G c32c32 ccc cc V+2 ccc V-2 ccc ccc V+2 ccc V-2
+G r2.r2.r2.r2.r1r2r2.
+G ]0
+
+3 [
+3 @e11 V12 L16 O3
+3 [r2.@e11 c16 r8. r2 @e12 crccrcr8]5
+3 @e1 V11 O5
+3 [rdfagefde8c8]3     rdfagefde8f8
+3 [rga+>dc<aa+ga8f8]3 rga+>cdfg1&g8.
+3 V9 r16 O3 \2
+3 gaa+>c
+3   [dr8fr8e4.e8d8c8]2
+3 > [dr8fr8e4.e8d8c8]2
+3 < [dr8fr8e4.e8d8c8]2
+3 >  dr8fr8e4.e8d8c8 dr8fr8e4.e8d8
+3 V11 O5
+3 gfdfdcdfgfga+ d+8d+d+8.f8g8f8e8ee8.
+3 f8g8e8f8ff8.g8a8g8f+8f+f+8.g8a8f+8 g1&g2r2.
+3 ]0
+
+1 [
+1 L16 @e1 V10 O5
+1 r1 r1
+1 [rearbrgarderc<bga>]8
+1 L16 @e1 V11 O4
+1 d2.c2.<a+2>c4d2.g2.f2.e2.a+1&a+2 <gaa+>c
+1   [dr8fr8e4.e8d8c8]2
+1 > [dr8fr8e4.e8d8c8]2
+1 < [dr8fr8e4.e8d8c8]2
+1 > [dr8fr8e4.e8d8c8]2
+1 d2.d+8d+d+8.f8g8f8e8ee8.f8g8e8f8ff8.g8a8g8f+8f+f+8.g8a8f+8 g1&g2r2.
+1 ]0
+
+2 [
+2 L16 @e1 V9 \1
+2 r1 r1
+2 [r O5 earbrgarderc<bga]8
+2 L16 @e1 V11 O4
+2 d2.c2.<a+2>c4d2.g2.f2. e2.a+1&a+2 <gaa+>c
+2 [dr8fr8e4.e8d8c8]2
+2 [a+r8>dr8c4.c8<a+8>c8<]2
+2 [dr8fr8e4.e8d8c8]2
+2 [a+r8>dr8c4.c8<a+8>c8<]2
+2 > d2.c8cc8.d8d+8d8c+8c+c+8.d8e8c+8d8dd8.e8f8e8d+8d+d+8.e8f+8d+8 e1&e2r2.
+2 ]0

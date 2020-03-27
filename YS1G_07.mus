@@ -1,0 +1,117 @@
+;[gain=1.0 name=YS1G_07 duration=300s fade=5s]
+#opll_mode 0
+#tempo 162
+#title { "Holders of Power"}
+
+;マシンID
+; 1:SONY製マシン
+; 2:Panasonic製マシン
+; 3:SANYO製マシン
+;#machine_id 0
+
+;LFOのモード。1を指定するとLFOの速度が若干速めになります。初期値は0です。
+;#lfo_mode 0
+
+;トラックバッファを割り当てます。
+;#alloc 0=1000
+
+;#macro_offset <定義文字 = no>
+#macro_offset a = 100
+#macro_offset b = 120
+#macro_offset c = 140
+#macro_offset d = 160
+#macro_offset e = 180
+#macro_offset f = 200
+#macro_offset r = 220
+
+@e0  = {1, 0, f }
+@e1  = {1, 0, fdc }
+@e2  = {1, 0, fec0 }
+@e3  = {1, 0, fdcba98 }
+
+@e10 = {2, 2, fdcba:15,90=10 }
+@e11 = {2,10, fdcba:15,90=10 }
+@e12 = {2, 2, fdc }
+
+@e15 = {2, 2, 8f=80 }
+
+@e20 = {1, 0, fdcba }
+
+@e30 = {1, 0, f:15,0 }
+
+*0 = {Y6,255 Y7,255}
+*1 = {Y14,32 Y39,5 Y23,80 Y40,1 Y24,192}
+
+;* D.ギター6
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v15 = { 2, 2,15, 1, 1, 0, 0, 2, 0, 0, 0, 0, 1
+             ,15, 0, 0, 0, 0, 4, 0, 1, 0, 0, 1}
+
+9  @15 V13 L16 O4
+A  @15 V10 L16 O5 \1
+9A V-8 g4& V+ g4& V+ g4& V+ g4 V+ g+4& V+ g+4 V+ a+4& V+ a+4 V+
+9A g1g+2a+2
+9A [
+9A [
+9A   [g2a+2a2g+2]4
+9A   <[cgccg+ccg ccfcd+dd+f cgccg+cca+ cc>c<ca+g+gf]2>
+9A ]
+9A ]0
+
+B  @15 V13 L16 O4
+C  @15 V10 L16 O5 \1
+BC V-8 c4& V+ c4& V+ c4& V+ c4 V+ c+4 V+ &c+4 V+ d+4& V+ d+4 V+
+BC c1c+2d+2
+BC [
+BC [
+BC   [c2d+2f2d+2]4
+B    [r1 r1]2
+C    [cgccg+ccg ccfcd+dd+f cgccg+cca+ cc>c<ca+g+gf]2
+BC ]
+BC ]0
+
+D  L16 @13 V13 O3
+E  L16 @10 V13 O3 @e20 H0,1,1,5 \5
+DE V-8
+DE cgcc V+ g+ccg V+ ccfc V+ d+dd+f V+ cgcc V+ g+cca+ V+ cc>c<c V+ a+g+gf V+
+DE cgccg+ccg ccfcd+dd+f cgccg+cca+ cc>c<ca+g+gf
+DE [
+DE [
+DE   [c>c<cc>c<cc>c<d+>d+<d+d+>d+<d+d+>d+< f>f<ff>f<ff>f<g+>g+<g+g+>g+<g+g+>g+<]4
+DE   [cgccg+ccg ccfcd+dd+f cgccg+cca+ cc>c<ca+g+gf]2
+DE ]
+DE ]0
+
+1 @e1 V13 L16 O5
+1 V-8 gccg V+2 ccgc V+2 gccg V+2 ccgc
+1 [gccgccgc]6
+1 [
+1 [
+1   [gccgccgca+d+d+a+d+d+a+d+affaffaf>c<g+g+>c<g+g+>c<g+]4
+1   [gccgccgc]8
+1 ]
+1 ]0
+
+2 @e2 V14 L16 O2
+2 r1 r1 r1
+2 c8r8c8r8 c8r8c8r8
+2 [
+2 @e2 V14 L16 O2 P30
+2 [c8r8c8rccr8.c8r8]3 c8r8c8rccr8.c8cc
+2 [c8r8c8rccr8.c8r8]3 c8r8c8rccr8.cccc
+2 [c8r8]12 c8r8c8r8 cr8cr8cc
+2 [c8r8c8rccr8.c8r8]3 c8r8c8rccr8.c8cc
+2 [c8r8c8rccr8.c8r8]4
+2 [c8r8]14
+2 @e3 > P40 gd<a>gd<a>gd
+2 ]0
+
+3 V12 L16 O3
+3 r1 r1 r1 @e15 c1
+3 [
+3 [
+3   [@e10 cccc | @e11 c @e10 ccc]8 @e11 c @e10 c @e11 cc
+3   [@e10 cccc | @e11 c @e10 ccc]8 @e11 cccc
+3   @e12 [cccccccc]7 @e11 c @e10 cc @e11 c @e10 cc @e11 cc
+3 ]
+3 ]0

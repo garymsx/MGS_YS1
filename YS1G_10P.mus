@@ -1,0 +1,92 @@
+;[gain=1.0 name=YS1G_10P duration=300s fade=5s]
+#opll_mode 0
+#tempo 120
+#title { "Tower of The Shadow of Death(PSG)"}
+
+;マシンID
+; 1:SONY製マシン
+; 2:Panasonic製マシン
+; 3:SANYO製マシン
+;#machine_id 0
+
+;LFOのモード。1を指定するとLFOの速度が若干速めになります。初期値は0です。
+;#lfo_mode 0
+
+;トラックバッファを割り当てます。
+;#alloc 0=1000
+
+;#macro_offset <定義文字 = no>
+#macro_offset a = 100
+#macro_offset b = 120
+#macro_offset c = 140
+#macro_offset d = 160
+#macro_offset e = 180
+#macro_offset f = 200
+#macro_offset r = 220
+
+@e0  = {1, 0, f }
+@e1  = {1, 0, fed:60,d0=120 }
+@e2  = {1, 0, fdcba }
+@e3  = {1, 0, fed }
+
+@e11 = {3, 5, fdcba9876543210 }
+@e12 = {2,20, fdcb0=20 }
+@e13 = {2, 5, fdcb0=20 }
+
+*10 = {@e2  P0   V13}
+*11 = {@e11 P150 V13}
+*12 = {@e12 P0   V11}
+*13 = {@e13 P0   V11}
+
+1 [
+1 L16 *10 V13 O2
+1 [d>d<d>c<dbd>c r4 *11 c4 *10 < d>d<d>c<dbd>c *12 crcc *10 c&<bag]5
+1 d8dd8dd>d<d>c<b>c< f8ff8ff>f<f>c<f>f<         a+8a+a+8a+ V+2 <a+>a+c>c<<a+>a+ V-2 d8dd8dd>d<d+>d+<f>f<
+1 g8gg8gg>g<g>f<g>g< a+8a+a+8a+a+>a+<g>g<a+>a+  c8cc8cc>c<<g>gc>c
+1 @e3 V12 O2
+1 d+1&d+2
+1 @e2 V13 O2
+1 gaa+>c<
+1 [g8gg *12 c *10 g>c8c8 *12 c *10 r | <a+>a+c>c<<a+>a+<]4
+1 < *12 cccrcc *10
+1 [g8gg *12 c *10 g>c8c8 *12 c *10 r | <a+>a+c>c<<a+>a+<]4
+1 *13 c32c32 *12 ccccc *10
+1 gfdfdcdfgfga+
+1 @e1 V12 O2 H0,1,2,30
+1 c2.c+2.d2.d+2.e1&e1 r4
+1 ]0
+
+2 [
+2 L16 @e2 V9 O3 \4
+2 d>d<d>c<dbd>cr2< d>d<d>c<dbd>cr4c&<bag
+2 L16 @e1 V12 O5 \0 H10,1,2,2
+2 a1&    a4<a2>c4         d_e16&e4.d16&d2& d2.r4
+2 r4a2.& a4>c4<b8a+a8.d8& d8a2..&          a2 r2
+2 L16 @e1 V12 O4 \0
+2 a8aa8.>a8d8a8g4.f8e8c8d4.c8<a+8>c8<a4.a8a+8>c8d8dd8.>d8<g8>d8c4.
+2 <g8a8a+8>c4.<g8a8a+8>c2. &c2.r4
+2 L16 @e1 V11 O4 \1
+2 [dr8fr8e4.e8d8c8]2
+2 [a+r8>dr8c4.c8<a+8>c8<]2
+2 [dr8fr8e4.e8d8c8]2
+2 [a+r8>dr8c4.c8<a+8>c8<]2
+2 V11 O5
+2 gfdfdcdfgfga+
+2 c8cc8.d8d+8d8c+8c+c+8.d8e8c+8d8dd8.e8f8e8d+8d+d+8.e8f+8d+8 e1&e2r2.
+2 ]0
+
+3 [
+3 L16 @e1 V11 O5
+3 r1 r1
+3 [rearbrgarderc<bga>]8
+3 L16 @e1 V11 O4
+3 d2.c2.<a+2>c4d2.g2.f2.e2.
+;3 a+1&a+2<
+3 rga+>cdfg1&g8<<
+3 gaa+>c
+3   [dr8fr8e4.e8d8c8]2
+3 > [dr8fr8e4.e8d8c8]2
+3 < [dr8fr8e4.e8d8c8]2
+3 > [dr8fr8e4.e8d8c8]2
+3 d2.d+8d+d+8.f8g8f8e8ee8.f8g8e8f8ff8.g8a8g8f+8f+f+8.g8a8f+8 g1&g2r2.
+3 ]0

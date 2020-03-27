@@ -1,0 +1,154 @@
+;[gain=1.0 name=YS1G_14P duration=300s fade=5s]
+#opll_mode 0
+#tempo 153
+#title { "The Morning Grow"}
+
+;マシンID
+; 1:SONY製マシン
+; 2:Panasonic製マシン
+; 3:SANYO製マシン
+;#machine_id 0
+
+;LFOのモード。1を指定するとLFOの速度が若干速めになります。初期値は0です。
+;#lfo_mode 0
+
+;トラックバッファを割り当てます。
+#alloc 1=1500
+#alloc 2=1500
+#alloc 3=1500
+
+;#macro_offset <定義文字 = no>
+#macro_offset a = 100
+#macro_offset b = 120
+#macro_offset c = 140
+#macro_offset d = 160
+#macro_offset e = 180
+#macro_offset f = 200
+#macro_offset r = 220
+
+@e0  = {1, 0, f }
+@e1  = {1, 0, feeddc:30,c0=120 }
+@e2  = {1, 0, feeddc:120,c0=120 }
+@e3  = {1, 0, def }
+@e4  = {1, 0, fdcb }
+
+@e10 = {2, 3, fdccbba9876543210 }
+@e11 = {2,10, fdccbba9876543210 }
+@e12 = {2,20, fdccbba9876543210 }
+
+1 @e1 V10 L8 O5
+1 [[f+16g16]6]3 V-2 [f+16g16]6
+1 @e1 V12 O4
+1 [b>df+gec+f+d<b>ec+<a]
+1 @e3 V11 L8 O4 H10,1,2,2
+1 d2.  e2.  f+2&f+d b2.
+1 e2.  f+2. a2&ae>  c+2<ba
+1 b2.& b2.> c+2.    d2.<
+1 b2.& b2.  a+2.& a+2.
+1 b>c+dc+<ba   b2.       b>c+dc+<ba   b4.g4.
+1 ab>c+def+    gf+edc+<a b4.>c+4.     d4.e4.
+1 f+<b>f+<b4.& b4.b>de   f+<b>f+<b4.& b4.>b4.
+1 a2.>         c+4.e4.   dc+d<b4.&    b2.
+1 @e1  V12 O6 HF
+1 b2.  a4.ef+g   a4.g4. f+4.d4.
+1 b2.  a4.>c+4.< b2.&   b2.
+1 b2.  a4.ef+g   a4.g4. f+4.d4.
+1 b2.> c+2.      d4.c+4.<b4.a4.
+1 @e3 V11 L8 O4 H10,1,2,2
+1 b2.> c+4.d4. c+2.< b4.a4.
+1 g2.  a4.b4.  b2.   a+2.
+1 b2.> c+4.d4. c+2.  d4.e4. d2.&d2.<
+1 b>c+dc+<ba   b2.       b>c+dc+<ba   b4.g4.
+1 ab>c+def+    gf+edc+<a b4.>c+4.     d4.e4.
+1 f+<b>f+<b4.& b4.b>de   f+<b>f+<b4.& b4.>b4.
+1 a2.>         c+4.e4.   dc+d<b4.&    b2.&b2.&
+1 [V- b8&]5 b8
+
+2 @e1 V12 L8 O4 \0
+2 [f+b>dec+<a>d<bg>c+<ae]4 <
+2 b2.>c+2.d2.f+2.<
+2 a2.b2.>c+2.a2.
+2 g2.a2.b2.>c+2.
+2 d2.e2. @e2 f+2.&f+2.<
+2 @e1
+2 [f+b>dec+<a>    d<bg>c+<ae]2 >
+2 c+<aeaec+>     c+<aeaec+
+2 d>d<dc+>c+<c+< b>b<b>c+>c+<c+
+2 [f+b>dec+<a>    d<bg>c+<ae]2 >
+2 c+<aeaec+>     c+<aeaec+
+2 f+ef+df+b>
+2 df+b2<
+
+2 @e1 V10 \1
+2 g2.a2.>d2.<b2.
+2 g2.e2.f+2.   <b>df+b>df+
+2 gd<b>gd<b>   ec+<a>ec+<a>
+2 f+d<a>f+d<a> f+d<b>f+d<b>
+2 gd<b>gd<b>   ec+<a>ec+<a>
+2 bf+df+d<b>   bf+df+d<b>
+2 @e1 V12
+2 g2. a4.b4.  a2. g4.f+4.
+2 e2. f+4.g4. g2. f+2.
+2 g2. a4.b4.  a2. b4.>c+4.<
+;2 b2. d4.e4.<
+2 P60 V13 O4
+2 [@e12 d16d16 @e4 d<b>]3
+2 @11 [c16]6
+2 @e1 V12 P0 O4
+2 [f+b>dec+<a>    d<bg>c+<ae]2 >
+2  c+<aeaec+>     c+<aeaec+
+2  d>d<dc+>c+<c+< b>b<b>c+>c+<c+
+2 [f+b>dec+<a>    d<bg>c+<ae]2 >
+2  c+<aeaec+>     c+<aeaec+
+2 [f+b>dec+<a>    d<bg>c+<ae]4
+2 @e2
+2 f+2.& f+2.
+
+3 @e3 V10 L8 O2
+3 b2.&b2.&b2.&b2.
+3 @e4 V13 L8 O2 
+3 [br4]16
+3 [ar4]8
+3 [gr4]8
+3 [f+r4]6 V-3 f+ V+ f+ V+ f+ V+ f+ V+  f+f+ V-
+3 [b>b<b @e11 b> @e4 b<b]2
+3 [g>g<g @e11 g> @e4 g<g]2
+3 [a>a<a @e11 a> @e4 a<a]2
+3 b>b<b @e11 a> @e4 a<a g>g<g @e11 f+ @e4 >f+<f+
+3 [b>b<b @e11 b> @e4 b<b]2
+3 [g>g<g @e11 g> @e4 g<g]2
+3 [a>a<a @e11 a> @e4 a<a]2
+3 @e3 V10 L8 O2
+3 b2.&b2.
+3 g2. a2.> d2.< b2.
+3 g2. a2.  b2.& b4.a4.
+3 g2. a2.> d2.< b2.
+3 g2. a2.
+3 @e4 V13 L8 O2 
+3 bbb @e11 b @e4 bb bbb @e10 b16b16 @e11 bb @e4
+3 [g>g<g @e11 g @e4 >g<g]2
+3 [a>a<a @e11 a @e4 >a<a]2
+3 [e>e<e @e11 e @e4 >e<e]2
+3 f+>f+<f+ @e11 f+ @e4 >f+<f+ f+>c+<f+> @e11 f+ @e4 <f+>a+<
+3 [g>g<g @e11 g @e4 >g<g]2
+3 [a>a<a @e11 a @e4 >a<a]2
+3 bbb bbb
+3 g>g<g a>a<a
+3 [b>b<b @e11 b> @e4 b<b]2
+3 [g>g<g @e11 g> @e4 g<g]2
+3 [a>a<a @e11 a> @e4 a<a]2
+3 b>b<b @e11 a> @e4 a<a g>g<g @e11 f+ @e4 >f+<f+
+3 [b>b<b @e11 b> @e4 b<b]2
+3 [g>g<g @e11 g> @e4 g<g]2
+3 [a>a<a @e11 a> @e4 a<a]2
+3 @e3 V10 L8 O2
+3 b2.&
+3 b2.&
+3 b2.&
+3 b2.&
+3 T140 V- b2.&
+3 T130 V- b2.&
+3 T115 V- b2.&
+3 T100 V- b2.&
+3 T80  V- b2.&b2.
+

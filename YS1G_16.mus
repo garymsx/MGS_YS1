@@ -1,0 +1,60 @@
+;[gain=1.0 name=YS1G_16 duration=300s fade=5s]
+#opll_mode 0
+#tempo 125
+#title { "Game Over"}
+
+;マシンID
+; 1:SONY製マシン
+; 2:Panasonic製マシン
+; 3:SANYO製マシン
+;#machine_id 0
+
+;LFOのモード。1を指定するとLFOの速度が若干速めになります。初期値は0です。
+;#lfo_mode 0
+
+;トラックバッファを割り当てます。
+;#alloc 0=1000
+;#alloc { 3=100
+;        ,5=256
+;       }
+
+#alloc {b=2000}
+
+;1文字の英文字(A-Z)にマクロのオフセット番号を定義します。
+; a = 10と定義定義した場合場合、以下以下は*20と同意になる。
+; *a10
+;#macro_offset <定義文字 = no>
+#macro_offset a = 100
+#macro_offset b = 120
+#macro_offset c = 140
+#macro_offset d = 160
+#macro_offset e = 180
+#macro_offset f = 200
+#macro_offset r = 220
+
+@e1  = {1, 0, fdc }
+
+;* ベース
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v15 = {20, 2,15, 2, 2, 0, 1, 1, 0, 1, 0, 0, 0
+             ,15, 1, 2, 0, 0, 4, 0, 0, 0, 0, 0}
+
+1239ABCDE V0 L16
+
+9 @11 V13 L16 O5
+A @11 V11 L16 O5 \1 r16
+9A a4c4f4a2g4f4g4a4c4f4a2g4a4a+4 >c1>c1
+
+D  @15 V13 L16 O3
+E  @15 V11 L16 O3 \2
+DE f1d+1f1d+1 f1&f1
+
+1 @e1 V11 L16 O4
+1 a1g1a1g1 a1&a1
+
+2 @e1 V11 L16 O4 \1
+2 a1g1a1g1 a1&a1
+
+3 @e1 V11 L16 O4
+3 f1d+1f1d+1 f1&f1
+

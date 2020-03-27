@@ -1,0 +1,79 @@
+;[gain=1.0 name=YS1G_02 duration=300s fade=5s]
+#opll_mode 0
+#tempo 140
+#title { "Fountain of Love"}
+
+;マシンID
+; 1:SONY製マシン
+; 2:Panasonic製マシン
+; 3:SANYO製マシン
+;#machine_id 0
+
+;LFOのモード。1を指定するとLFOの速度が若干速めになります。初期値は0です。
+;#lfo_mode 0
+
+;トラックバッファを割り当てます。
+;#alloc 0=1000
+
+;#macro_offset <定義文字 = no>
+#macro_offset a = 100
+#macro_offset b = 120
+#macro_offset c = 140
+#macro_offset d = 160
+#macro_offset e = 180
+#macro_offset f = 200
+#macro_offset r = 220
+
+@e0  = {1, 0, f }
+@e1  = {1, 0, fdc }
+
+@e10 = {2, 5, fdcba9:10,90=10 }
+
+@e20 = {1, 0, def }
+
+@e30 = {1, 0, f:15,0 }
+
+*0 = {Y6,255 Y7,255}
+*1 = {Y14,32 Y39,5 Y23,80 Y40,1 Y24,192}
+
+;* ビブラフォン2
+;       TL FB AR DR SL RR KL MT,AM,VB,EG,KR,DT
+@v15 = {35, 0,15, 3, 8, 0, 0, 7, 1, 0, 0, 0, 1
+             ,15, 1, 1, 1, 0, 1, 0, 0, 0, 1, 0}
+
+9A [
+9  @15 V12 L8 O6 H10,1,1,2
+A  @15 V12 L8 O6 H10,1,1,2 \1
+9A [
+9A     e4&eg4&g>c4< e4&eg4&g>c4< a4>e4dc4<a& a4a4b4>c4<
+9A   | f4&fa4&a>d4< f4&fa4&a>d4< g4>g4fe4d&  d4d4e4f4<
+9A ]
+9A f4&fa4&a>d4< gr4gr4g4> ccccrcrcrcrccccc
+9A ]0
+
+DE [
+D  @13 V13 L8 O3
+E  @13 V13 L8 O3 \1
+DE [
+DE     cr4cr2 cr4crcde fr4fr2 fr4frfee
+DE   | dr4dr2 dr4drdef gr4gr2 gr4gr<gab>
+DE ]
+DE dr4drdef gr4gr<gab a+r4a+r4a+r a+r4a+a+a+a+a+
+DE ]0
+
+12 [
+1  @e1 V13 L8 O4
+2  @e1 V13 L8 O4 \1
+12 [
+12     regb>dcr<e gb>dc<b>c<bg a1& a1
+12  | rfa>cedr<f a>cedcdc<a   b1& b1
+12 ]
+1  rfa>cedrc< brr>crrd4  ccccrcrc       rcrcddcd
+2  rfa>cedrc< brr>crrd4< a+a+a+a+ra+ra+ ra+ra+a+a+a+a+
+12 ]0
+
+3 [
+3 @e10 V13 L8 O3
+3 [r4cr4.cr r4cr4ccr r4cr4.cr r4cr4ccc]3
+3 r4cr4.cr r4cr4ccr [rccrccrc]
+3 ]0
